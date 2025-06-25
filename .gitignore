@@ -141,6 +141,11 @@ examples/generated/
 *.png
 generation-log.md
 slides-images.md
+# keep examples
+!examples/academic-research/**
+!examples/business-strategy/**
+!examples/tech-presentation-gemini/**
+!examples/tech-presentation-openai/**
 
 # IDE
 .vscode/
