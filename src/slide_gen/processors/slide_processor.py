@@ -1,5 +1,6 @@
 """Simple slide processor."""
 
+import re
 from typing import List
 from dataclasses import dataclass
 from pathlib import Path
@@ -10,6 +11,11 @@ class SlideInfo:
     """Information about a slide."""
     title: str
     index: int = 0
+
+
+def extract_markdown_headers(content: str) -> List[str]:
+    """Extract markdown headers from content using regex."""
+    return re.findall(r'^#+\s+(.+)$', content, re.MULTILINE)
 
 
 def process_titles(titles: List[str]) -> List[SlideInfo]:

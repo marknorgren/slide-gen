@@ -1,12 +1,11 @@
 """Simple directory-based slide processing."""
 
 import yaml
-import re
 from pathlib import Path
 from typing import Dict, Any, List
 from dataclasses import dataclass
 
-from .slide_processor import SlideInfo
+from .slide_processor import SlideInfo, extract_markdown_headers
 
 
 @dataclass
@@ -44,7 +43,7 @@ def extract_slides_from_md(directory: Path) -> List[SlideInfo]:
     content = slides_file.read_text(encoding='utf-8')
     
     # Extract headers (# Title)
-    headers = re.findall(r'^#+\s+(.+)$', content, re.MULTILINE)
+    headers = extract_markdown_headers(content)
     
     return [SlideInfo(title=title.strip(), index=i) 
             for i, title in enumerate(headers)]
