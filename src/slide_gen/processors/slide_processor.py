@@ -27,8 +27,7 @@ def process_file(file_path: Path) -> List[SlideInfo]:
     
     if file_path.suffix.lower() == '.md':
         # Extract markdown headers
-        import re
-        headers = re.findall(r'^#+\s+(.+)$', content, re.MULTILINE)
+        headers = extract_markdown_headers(content)
         return [SlideInfo(title=title.strip(), index=i) for i, title in enumerate(headers)]
     else:
         # Treat each line as a slide title
