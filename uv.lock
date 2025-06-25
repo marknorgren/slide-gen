@@ -1395,7 +1395,7 @@ wheels = [
 ]
 
 [[package]]
-name = "slide-ai-backgrounds"
+name = "slide-gen"
 version = "1.0.0"
 source = { editable = "." }
 dependencies = [
