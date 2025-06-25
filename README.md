@@ -1,1 +1,170 @@
-# Side Gen
+# Slide Gen
+
+Generate beautiful AI-powered background images for your presentation slides.
+
+## Quick Start
+
+1. **Setup**
+
+```bash
+git clone https://github.com/[username]/slide-gen.git
+cd slide-gen
+just setup
+```
+
+2. **Add API Keys** Edit `.env` file:
+
+```bash
+OPENAI_API_KEY=your-openai-key
+OLLAMA_BASE_URL=http://localhost:11434
+```
+
+3. **Generate Images**
+
+```bash
+# From a directory (recommended)
+slide-gen --directory my-talk/
+
+# From slide titles
+slide-gen --titles "Modern Architecture" "Cloud Computing" "AI Ethics"
+
+# From a markdown file
+slide-gen --file slides.md
+
+# Health check
+slide-gen --health-check
+```
+
+## Providers
+
+| Provider  | Prompts | Images | Setup       |
+| --------- | ------- | ------ | ----------- |
+| OpenAI    | ✅      | ✅     | Add API key |
+| Gemini    | ✅      | ✅     | Add API key |
+| Ollama    | ✅      | ❌     | Run locally |
+| LM Studio | ✅      | ❌     | Run locally |
+
+## Directory Workflow (Recommended)
+
+Create a folder with `slides.md` and `config.yaml`:
+
+**config.yaml:**
+
+```yaml
+theme: "modern tech, clean geometric shapes"
+style: "architectural photography, clean lines"
+prompt_provider: "ollama"
+image_provider: "openai"
+```
+
+**slides.md:**
+
+```markdown
+# Introduction to AI
+
+Overview of artificial intelligence concepts
+
+# Machine Learning
+
+Algorithms that learn from data
+
+# Future Trends
+
+Emerging technologies and possibilities
+```
+
+**Generate:**
+
+```bash
+slide-gen --directory my-talk/
+
+# Or try the included examples:
+slide-gen --directory examples/tech-presentation/
+slide-gen --directory examples/business-strategy/
+```
+
+**Output:**
+
+- `my-talk/Introduction_to_AI.png`
+- `my-talk/Machine_Learning.png`
+- `my-talk/Future_Trends.png`
+- `my-talk/slides-images.md` (markdown with embedded images)
+- `my-talk/generation-log.md` (detailed prompts and generation log)
+
+## Other Examples
+
+```bash
+# Use different providers
+slide-gen --titles "My Slide" --prompt-provider ollama --image-provider openai
+
+# Process markdown file
+echo "# AI Overview\n# Machine Learning\n# Future Trends" > slides.md
+slide-gen --file slides.md
+```
+
+## Configuration
+
+Set environment variables in `.env`:
+
+```bash
+# OpenAI
+OPENAI_API_KEY=your-key
+
+# Gemini
+GEMINI_API_KEY=your-key
+
+# Ollama (local)
+OLLAMA_BASE_URL=http://localhost:11434
+OLLAMA_MODEL=llama3.1
+
+# LM Studio (local)
+LMSTUDIO_BASE_URL=http://localhost:1234/v1
+```
+
+## CLI Options
+
+```bash
+slide-gen [options]
+
+# Input
+--directory my-talk/             # Directory with slides.md and config.yaml
+--titles "Title 1" "Title 2"     # Slide titles
+--file slides.md                 # Markdown/text file
+
+# Providers
+--prompt-provider ollama         # AI for prompts
+--image-provider openai          # AI for images
+
+# Output
+--output generated               # Output directory
+
+# Utilities
+--health-check                   # Test providers
+```
+
+## Development
+
+```bash
+# Install
+just install
+
+# Test
+just test
+
+# Examples
+just example               # Basic title-based generation
+just example-directory     # Directory-based generation
+```
+
+## Included Examples
+
+The repository includes example presentations you can try immediately:
+
+- `examples/tech-presentation/` - Technology and innovation theme
+- `examples/business-strategy/` - Corporate and strategic planning theme  
+- `examples/academic-research/` - Academic and research methodology theme
+
+Try them with:
+```bash
+slide-gen --directory examples/tech-presentation/
+```

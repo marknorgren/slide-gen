@@ -1,0 +1,4 @@
+theme: "scientific discovery, research methodology, academic excellence"
+style: "documentary photography, natural lighting, scholarly"
+prompt_provider: "ollama"
+image_provider: "openai"

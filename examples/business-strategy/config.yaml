@@ -1,0 +1,4 @@
+theme: "corporate excellence, growth, strategic vision"
+style: "corporate photography, professional aesthetics, executive"
+prompt_provider: "ollama"
+image_provider: "openai"
