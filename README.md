@@ -104,6 +104,17 @@ uv run slide-gen --titles "My Slide" --prompt-provider ollama --image-provider o
 # Process markdown file
 echo "# AI Overview\n# Machine Learning\n# Future Trends" > slides.md
 uv run slide-gen --file slides.md
+
+# Custom theme and style
+uv run slide-gen --titles "Market Analysis" "Growth Strategy" \
+  --theme "corporate excellence, innovation, leadership" \
+  --style "corporate photography, professional" \
+  --aspect-ratio "4:3"
+
+# Academic presentation style
+uv run slide-gen --file research.md \
+  --theme "academic research, scholarly" \
+  --style "documentary photography, natural lighting"
 ```
 
 ## Configuration
@@ -138,6 +149,11 @@ uv run slide-gen [options]
 # Providers
 --prompt-provider ollama         # AI for prompts
 --image-provider openai          # AI for images
+
+# Style and Theme
+--theme "corporate, modern"      # Theme for generation
+--style "clean photography"      # Style for generation  
+--aspect-ratio 16:9              # Image aspect ratio (16:9, 4:3, 1:1)
 
 # Output
 --output generated               # Output directory
