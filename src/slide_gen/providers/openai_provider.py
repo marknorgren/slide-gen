@@ -44,7 +44,7 @@ class OpenAIProvider(AIProvider):
         user_prompt = f"""Create a single, visually striking landscape photography prompt that metaphorically represents: "{request.slide_title}"
         
         Additional context: {request.slide_content or "No additional context"}
-        Style preferences: {request.style_preferences or "Professional, metaphorical, landscape photography"}
+        Style preferences: {request.style or "Professional, metaphorical, landscape photography"}
         
         Return only the prompt, no other text. Make it detailed and specific for a photographer."""
         

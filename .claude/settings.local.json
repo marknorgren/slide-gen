@@ -11,7 +11,10 @@
       "WebFetch(domain:ai.google.dev)",
       "Bash(uv run:*)",
       "Bash(grep:*)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Bash(git branch:*)",
+      "Bash(just:*)",
+      "Bash(git push:*)"
     ],
     "deny": []
   }

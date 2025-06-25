@@ -1,5 +1,9 @@
 # Slide Gen
 
+<p align="center">
+  <img src="generated/Slide_Gen_Project_Logo.png" alt="Slide Gen Logo" width="400">
+</p>
+
 Generate beautiful AI-powered background images for your presentation slides.
 
 ## Quick Start
@@ -160,10 +164,10 @@ just example-directory     # Directory-based generation
 
 The repository includes example presentations you can try immediately:
 
-- `examples/tech-presentation-openai/` - Technology theme with OpenAI
-- `examples/tech-presentation-gemini/` - Technology theme with Gemini  
-- `examples/business-strategy/` - Corporate and strategic planning theme
-- `examples/academic-research/` - Academic and research methodology theme
+- `examples/tech-presentation-openai/` - Technology theme with OpenAI ([view gallery](examples/tech-presentation-openai/slides-images.md))
+- `examples/tech-presentation-gemini/` - Technology theme with Gemini ([view gallery](examples/tech-presentation-gemini/slides-images.md))
+- `examples/business-strategy/` - Corporate and strategic planning theme ([view gallery](examples/business-strategy/slides-images.md))
+- `examples/academic-research/` - Academic and research methodology theme ([view gallery](examples/academic-research/slides-images.md))
 
 Try them with:
 
