@@ -23,16 +23,16 @@ OLLAMA_BASE_URL=http://localhost:11434
 
 ```bash
 # From a directory (recommended)
-slide-gen --directory my-talk/
+uv run slide-gen --directory my-talk/
 
 # From slide titles
-slide-gen --titles "Modern Architecture" "Cloud Computing" "AI Ethics"
+uv run slide-gen --titles "Modern Architecture" "Cloud Computing" "AI Ethics"
 
 # From a markdown file
-slide-gen --file slides.md
+uv run slide-gen --file slides.md
 
 # Health check
-slide-gen --health-check
+uv run slide-gen --health-check
 ```
 
 ## Providers
@@ -76,11 +76,11 @@ Emerging technologies and possibilities
 **Generate:**
 
 ```bash
-slide-gen --directory my-talk/
+uv run slide-gen --directory my-talk/
 
 # Or try the included examples:
-slide-gen --directory examples/tech-presentation/
-slide-gen --directory examples/business-strategy/
+uv run slide-gen --directory examples/tech-presentation-openai/
+uv run slide-gen --directory examples/business-strategy/
 ```
 
 **Output:**
@@ -95,11 +95,11 @@ slide-gen --directory examples/business-strategy/
 
 ```bash
 # Use different providers
-slide-gen --titles "My Slide" --prompt-provider ollama --image-provider openai
+uv run slide-gen --titles "My Slide" --prompt-provider ollama --image-provider openai
 
 # Process markdown file
 echo "# AI Overview\n# Machine Learning\n# Future Trends" > slides.md
-slide-gen --file slides.md
+uv run slide-gen --file slides.md
 ```
 
 ## Configuration
@@ -124,7 +124,7 @@ LMSTUDIO_BASE_URL=http://localhost:1234/v1
 ## CLI Options
 
 ```bash
-slide-gen [options]
+uv run slide-gen [options]
 
 # Input
 --directory my-talk/             # Directory with slides.md and config.yaml
@@ -160,11 +160,14 @@ just example-directory     # Directory-based generation
 
 The repository includes example presentations you can try immediately:
 
-- `examples/tech-presentation/` - Technology and innovation theme
-- `examples/business-strategy/` - Corporate and strategic planning theme  
+- `examples/tech-presentation-openai/` - Technology theme with OpenAI
+- `examples/tech-presentation-gemini/` - Technology theme with Gemini  
+- `examples/business-strategy/` - Corporate and strategic planning theme
 - `examples/academic-research/` - Academic and research methodology theme
 
 Try them with:
+
 ```bash
-slide-gen --directory examples/tech-presentation/
+uv run slide-gen --directory examples/tech-presentation-openai/
+uv run slide-gen --directory examples/tech-presentation-gemini/
 ```
