@@ -1,0 +1,65 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "slide-gen"
+version = "1.0.0"
+description = "Generate beautiful AI-powered background images for presentation slides"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Slide Gen Contributors"}
+]
+keywords = ["ai", "slides", "presentation", "images", "backgrounds", "openai", "gemini", "ollama"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9", 
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Graphics",
+    "Topic :: Office/Business :: Office Suites",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "aiohttp>=3.8.0",
+    "Pillow>=9.0.0",
+    "asyncio-throttle>=1.0.0",
+    "python-dotenv>=1.0.0",
+    "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/[username]/slide-gen"
+Repository = "https://github.com/[username]/slide-gen"
+"Bug Tracker" = "https://github.com/[username]/slide-gen/issues"
+
+[project.scripts]
+slide-gen = "slide_gen.cli:cli_main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+slide_gen = ["py.typed"]
+
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+asyncio_mode = "auto"
