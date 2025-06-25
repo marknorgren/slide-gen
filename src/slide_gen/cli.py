@@ -29,6 +29,12 @@ async def main():
                        choices=["openai", "gemini"],
                        help="AI provider for images (default: openai)")
     
+    # Style and theme options
+    parser.add_argument("--theme", help="Theme for slide generation (e.g., 'corporate excellence, innovation')")
+    parser.add_argument("--style", help="Style for slide generation (e.g., 'minimal photography, clean aesthetics')")
+    parser.add_argument("--aspect-ratio", choices=["16:9", "4:3", "1:1"],
+                       help="Aspect ratio for generated images")
+    
     # Output
     parser.add_argument("--output", "-o", default="generated", help="Output directory")
     
@@ -83,7 +89,8 @@ async def main():
         
         # Generate images
         output_dir = Path(args.output)
-        results = await generate_images(slides, prompt_provider, image_provider, output_dir)
+        results = await generate_images(slides, prompt_provider, image_provider, output_dir,
+                                       theme=args.theme, style=args.style, aspect_ratio=args.aspect_ratio)
         
     elif args.file:
         slides = process_file(Path(args.file))
@@ -103,7 +110,8 @@ async def main():
         
         # Generate images
         output_dir = Path(args.output)
-        results = await generate_images(slides, prompt_provider, image_provider, output_dir)
+        results = await generate_images(slides, prompt_provider, image_provider, output_dir,
+                                       theme=args.theme, style=args.style, aspect_ratio=args.aspect_ratio)
         
     else:
         print("Error: Please provide --titles, --file, or --directory")
