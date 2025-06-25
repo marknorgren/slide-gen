@@ -1,0 +1,4 @@
+theme: "modern technology, innovation, digital transformation"
+style: "architectural photography, clean lines, professional lighting"
+prompt_provider: "ollama"
+image_provider: "gemini"

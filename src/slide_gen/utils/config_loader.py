@@ -23,7 +23,7 @@ def create_provider(provider_name: str):
         return GeminiProvider({
             "api_key": os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY"),
             "model": os.getenv("GEMINI_MODEL", "gemini-2.0-flash-exp"),
-            "image_model": os.getenv("GEMINI_IMAGE_MODEL", "imagen-3.0-generate-001"),
+            "image_model": os.getenv("GEMINI_IMAGE_MODEL", "imagen-4.0-generate-preview-06-06"),
         })
     elif provider_name == "ollama":
         return OllamaProvider({

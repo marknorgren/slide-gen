@@ -17,7 +17,7 @@ class GeminiProvider(AIProvider):
         self.api_key = config.get("api_key") or os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
         self.base_url = config.get("base_url", "https://generativelanguage.googleapis.com/v1beta")
         self.model = config.get("model", "gemini-2.0-flash-exp")
-        self.image_model = config.get("image_model", "imagen-3.0-generate-001")
+        self.image_model = config.get("image_model", "imagen-4.0-generate-preview-06-06")
         self.timeout = config.get("timeout", 60)
         
         if not self.api_key:
@@ -41,7 +41,8 @@ class GeminiProvider(AIProvider):
         user_prompt = f"""Create a single, visually striking landscape photography prompt that metaphorically represents: "{request.slide_title}"
         
         Additional context: {request.slide_content or "No additional context"}
-        Style preferences: {request.style_preferences or "Professional, metaphorical, landscape photography"}
+        Theme: {request.theme or "Professional, modern"}
+        Style preferences: {request.style or "Professional, metaphorical, landscape photography"}
         
         Return only the prompt, no other text. Make it detailed and specific for a photographer."""
         
@@ -78,21 +79,21 @@ class GeminiProvider(AIProvider):
     
     async def generate_image(self, request: ImageRequest) -> AIResponse:
         """Generate an image using Imagen."""
-        url = f"{self.base_url}/models/{self.image_model}:generateImage?key={self.api_key}"
+        url = f"{self.base_url}/models/{self.image_model}:predict?key={self.api_key}"
         
         # Enhance prompt with aspect ratio
         enhanced_prompt = f"{request.prompt}, 16:9 aspect ratio, high quality photography"
         
         payload = {
-            "prompt": enhanced_prompt,
-            "sampleCount": 1,
-            "aspectRatio": "16:9",
-            "safetySettings": [
+            "instances": [
                 {
-                    "category": "HARM_CATEGORY_HATE_SPEECH",
-                    "threshold": "BLOCK_LOW_AND_ABOVE"
+                    "prompt": enhanced_prompt
                 }
-            ]
+            ],
+            "parameters": {
+                "sampleCount": 1,
+                "aspectRatio": "16:9"
+            }
         }
         
         headers = {"Content-Type": "application/json"}
@@ -102,13 +103,17 @@ class GeminiProvider(AIProvider):
                 async with session.post(url, headers=headers, json=payload) as response:
                     if response.status == 200:
                         result = await response.json()
-                        # Gemini returns image data in different format
-                        if "generatedImages" in result and result["generatedImages"]:
-                            image_b64 = result["generatedImages"][0]["bytesBase64Encoded"]
-                            image_data = base64.b64decode(image_b64)
-                            return AIResponse(success=True, image_data=image_data)
+                        # Imagen returns image data in predictions format
+                        if "predictions" in result and result["predictions"]:
+                            prediction = result["predictions"][0]
+                            if "bytesBase64Encoded" in prediction:
+                                image_b64 = prediction["bytesBase64Encoded"]
+                                image_data = base64.b64decode(image_b64)
+                                return AIResponse(success=True, image_data=image_data)
+                            else:
+                                return AIResponse(success=False, error="No image data in prediction")
                         else:
-                            return AIResponse(success=False, error="No image data in response")
+                            return AIResponse(success=False, error="No predictions in response")
                     else:
                         error_text = await response.text()
                         return AIResponse(success=False, error=f"API error {response.status}: {error_text}")

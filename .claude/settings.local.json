@@ -6,7 +6,11 @@
       "Bash(git init:*)",
       "Bash(mv:*)",
       "Bash(rm:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "WebFetch(domain:ai.google.dev)",
+      "Bash(uv run:*)",
+      "Bash(grep:*)"
     ],
     "deny": []
   }
