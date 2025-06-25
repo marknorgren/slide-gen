@@ -3,15 +3,15 @@
 import os
 from dotenv import load_dotenv
 
+load_dotenv()
+
 from ..providers.openai_provider import OpenAIProvider
 from ..providers.gemini_provider import GeminiProvider
 from ..providers.ollama_provider import OllamaProvider
 from ..providers.lmstudio_provider import LMStudioProvider
 
-
 def create_provider(provider_name: str):
     """Create a provider instance with environment config."""
-    load_dotenv()
     
     if provider_name == "openai":
         return OpenAIProvider({
