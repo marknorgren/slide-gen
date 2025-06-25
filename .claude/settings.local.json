@@ -14,7 +14,9 @@
       "Bash(python3:*)",
       "Bash(git branch:*)",
       "Bash(just:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(cp:*)",
+      "WebFetch(domain:github.com)"
     ],
     "deny": []
   }

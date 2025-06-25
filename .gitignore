@@ -146,6 +146,8 @@ slides-images.md
 !examples/business-strategy/**
 !examples/tech-presentation-gemini/**
 !examples/tech-presentation-openai/**
+# keep logo
+!logo.png
 
 # IDE
 .vscode/
