@@ -50,7 +50,7 @@ async def generate_images(slides: List[SlideInfo],
             
             # Save image
             filename = f"{sanitize_filename(slide.title)}.png"
-            image_path = save_image(image_response.image_data, filename, output_dir)
+            image_path = await asyncio.to_thread(save_image, image_response.image_data, filename, output_dir)
             
             return GenerationResult(slide, True, image_path, prompt=prompt_response.content)
             
