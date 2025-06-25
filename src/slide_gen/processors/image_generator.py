@@ -25,15 +25,21 @@ class GenerationResult:
 async def generate_images(slides: List[SlideInfo], 
                          prompt_provider: AIProvider,
                          image_provider: AIProvider,
-                         output_dir: Path = Path("generated")) -> List[GenerationResult]:
+                         output_dir: Path = Path("generated"),
+                         theme: Optional[str] = None,
+                         style: Optional[str] = None,
+                         aspect_ratio: Optional[str] = None) -> List[GenerationResult]:
     """Generate images for slides."""
     
     async def generate_single(slide: SlideInfo) -> GenerationResult:
         try:
-            # Generate prompt
+            # Generate prompt with optional theme/style/aspect_ratio
             prompt_request = PromptRequest(
                 slide_title=slide.title,
-                slide_content=""
+                slide_content="",
+                theme=theme or "professional, modern",
+                style=style or "landscape photography, natural lighting",
+                aspect_ratio=aspect_ratio or "16:9"
             )
             prompt_response = await prompt_provider.generate_prompt(prompt_request)
             

@@ -104,6 +104,23 @@ uv run slide-gen --titles "My Slide" --prompt-provider ollama --image-provider o
 # Process markdown file
 echo "# AI Overview\n# Machine Learning\n# Future Trends" > slides.md
 uv run slide-gen --file slides.md
+
+# Custom theme and style with traditional aspect ratio
+uv run slide-gen --titles "Market Analysis" "Growth Strategy" \
+  --theme "corporate excellence, innovation, leadership" \
+  --style "corporate photography, professional" \
+  --aspect-ratio "4:3"
+
+# Academic presentation style
+uv run slide-gen --file research.md \
+  --theme "academic research, scholarly" \
+  --style "documentary photography, natural lighting"
+
+# Creative presentation with square aspect ratio
+uv run slide-gen --titles "Design Trends" "Innovation" \
+  --theme "creativity, modern art" \
+  --style "artistic photography, vibrant colors" \
+  --aspect-ratio "1:1"
 ```
 
 ## Configuration
@@ -139,6 +156,11 @@ uv run slide-gen [options]
 --prompt-provider ollama         # AI for prompts
 --image-provider openai          # AI for images
 
+# Style and Theme
+--theme "corporate, modern"      # Theme for generation
+--style "clean photography"      # Style for generation  
+--aspect-ratio 16:9              # Image aspect ratio (16:9, 4:3, 1:1)
+
 # Output
 --output generated               # Output directory
 
@@ -164,6 +186,7 @@ just example-directory     # Directory-based generation
 
 The repository includes example presentations you can try immediately:
 
+**Directory-based examples (using config.yaml):**
 - `examples/tech-presentation-openai/` - Technology theme with OpenAI
   ([view gallery](examples/tech-presentation-openai/slides-images.md))
 - `examples/tech-presentation-gemini/` - Technology theme with Gemini
@@ -173,9 +196,31 @@ The repository includes example presentations you can try immediately:
 - `examples/academic-research/` - Academic and research methodology theme
   ([view gallery](examples/academic-research/slides-images.md))
 
-Try them with:
+**CLI-based examples (using new theme/style options):**
+- `examples/creative-presentation/` - Creative themes with square (1:1) aspect ratio
+  ([view gallery](examples/creative-presentation/slides-images.md))
+- `examples/corporate-excellence/` - Corporate themes with traditional (4:3) aspect ratio
+  ([view gallery](examples/corporate-excellence/slides-images.md))
+
+Try directory-based examples:
 
 ```bash
 uv run slide-gen --directory examples/tech-presentation-openai/
-uv run slide-gen --directory examples/tech-presentation-gemini/
+uv run slide-gen --directory examples/business-strategy/
+```
+
+Try CLI-based examples with new options:
+
+```bash
+# Creative presentation with square aspect ratio
+uv run slide-gen --titles "Design Trends 2025" "Innovation in Art" "Creative Process" "Future Vision" \
+  --theme "creativity, modern art, innovation" \
+  --style "artistic photography, vibrant colors, dynamic composition" \
+  --aspect-ratio "1:1"
+
+# Corporate presentation with traditional aspect ratio  
+uv run slide-gen --titles "Strategic Leadership" "Market Expansion" "Operational Excellence" "Financial Growth" \
+  --theme "corporate excellence, leadership, innovation" \
+  --style "corporate photography, professional lighting, clean aesthetics" \
+  --aspect-ratio "4:3"
 ```
